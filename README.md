@@ -5,11 +5,11 @@ Material relacionado con el curso de Blazor WebAssembly - Primeros pasos imparti
 1.	Requisitos mínimos del hardware que ocupamos.<br/> 
 	https://docs.microsoft.com/en-us/visualstudio/releases/2022/system-requirements
 	
-5.	Microsoft SQL Server 2008 R2 o superior.<br/> 
+2.	Microsoft SQL Server 2008 R2 o superior.<br/> 
 	https://www.microsoft.com/en-us/sql-server/sql-server-downloads
 	Se acostumbra a utilizar la edición Express, en SQL Server 2017 para desarrollo es posible utilizar la edición Developer.	
 	
-6.	Microsoft Visual Studio 2022 (edición Community o superior)<br/>
+3.	Microsoft Visual Studio 2022 (edición Community o superior)<br/>
 	https://www.visualstudio.com/downloads/<br/>
 	https://docs.microsoft.com/en-us/visualstudio/install/install-visual-studio?view=vs-2022#install-workloads
 	
@@ -30,16 +30,16 @@ Material relacionado con el curso de Blazor WebAssembly - Primeros pasos imparti
  
 	Se puede confirmar el resultado con el “Acerca de” de Visual Studio 2022.
 	
-7.	Internet Information Services habilitado 
+4.	Internet Information Services habilitado 
 	http://technet.microsoft.com/en-us/library/cc731911.aspx
 	
-9.	Navegadores Web actualizados a la última versión. 
-	https://www.mozilla.org/en-US/firefox/
-	https://www.google.com/chrome/index.html
-	https://www.microsoft.com/en-us/edge
+5.	Navegadores Web actualizados a la última versión. 
+	- https://www.mozilla.org/en-US/firefox/
+	- https://www.google.com/chrome/index.html
+	- https://www.microsoft.com/en-us/edge
 
-10. Postman
-	https://www.getpostman.com/apps	
+6. Postman
+	- https://www.getpostman.com/apps	
 	
 De ser posible efectuar la instalación de las versiones del software con el idioma inglés, para unificar con la configuración utilizada por el profesor.
 
