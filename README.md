@@ -11,10 +11,10 @@ Material relacionado con el curso de Blazor WebAssembly - Primeros pasos imparti
 	
 6.	Microsoft Visual Studio 2022 (edición Community o superior)<br/>
 	https://www.visualstudio.com/downloads/<br/>
-	https://docs.microsoft.com/en-us/visualstudio/install/install-visual-studio?view=vs-2019#install-workloads
+	https://docs.microsoft.com/en-us/visualstudio/install/install-visual-studio?view=vs-2022#install-workloads
 	
 	Aquí se documenta como obtener los instaladores para la instalación local, 
-	https://docs.microsoft.com/en-us/visualstudio/install/create-a-network-installation-of-visual-studio?view=vs-2019, 
+	https://docs.microsoft.com/en-us/visualstudio/install/create-a-network-installation-of-visual-studio?view=vs-2022, 
 	esto baja todos los “workloads” pero al momento de instalar no se deben de instalar todos.
 	
 	Si el Visual Studio 2022 ya se encuentra instalado se puede utilizar el Visual Studio Installer, 
