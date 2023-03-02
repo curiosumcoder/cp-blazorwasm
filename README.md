@@ -17,15 +17,11 @@ Material relacionado con el curso de Blazor WebAssembly - Primeros pasos imparti
 	https://docs.microsoft.com/en-us/visualstudio/install/create-a-network-installation-of-visual-studio?view=vs-2019, 
 	esto baja todos los “workloads” pero al momento de instalar no se deben de instalar todos.
 	
-	Si el Visual Studio 2019 ya se encuentra instalado se puede utilizar el Visual Studio Installer, 
+	Si el Visual Studio 2022 ya se encuentra instalado se puede utilizar el Visual Studio Installer, 
 	para efectuar la actualización.
 
 	Se deben instalar al menos los “workloads”: 
-	- Web & Cloud 
-		+ ASP.NET and web development
-		+ Data storage and processing
-	- Other Toolsets 
-		+ .NET Core cross-platform development
+	- ASP.NET and web development
 		
 	En caso de contar con una instalación del Visual Studio 2022, proceder con la actualización a la última versión, 
 	y confirmar que se tengan instalados los “workloads” señalados en el punto anterior. Esto se hace ejecutando el 
