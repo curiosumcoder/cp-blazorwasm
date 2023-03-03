@@ -1,0 +1,42 @@
+﻿@inject HttpClient Http
+@page "/"
+
+<h1>Hello, world!</h1>
+
+<h2>La hora es @DateTime.Now.ToLongTimeString()</h2>
+
+
+<input type="search" placeholder="Type here ..." 
+@bind="searchTerm" />
+<button @onclick="OnSearch">Search</button>
+
+<hr />
+
+<ul>
+    @foreach (var item in items)
+    {
+        <li>@item.ProductName</li>
+    }
+</ul>
+
+@searchTerm
+
+@code {
+    string searchTerm = "";
+
+    void OnSearch()
+    {
+        Console.WriteLine($"Searching {searchTerm}...");
+
+        items = data.Products.Where(p => p.ProductName.Contains(searchTerm, StringComparison.InvariantCultureIgnoreCase)).ToList();
+    }
+
+    public Models.Northwind data { get; set; } = new Models.Northwind();
+
+    public List<Models.Product> items { get; set; } = new List<Models.Product>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        data = await Http.GetFromJsonAsync<Models.Northwind>("data/northwind.json") ?? new Models.Northwind();
+    }
+}
