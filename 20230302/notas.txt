@@ -1,0 +1,40 @@
+Introducción a Blazor WebAssembly
+
+- Tecnologías de la Web
+		- JavaScript, TypeScript
+		- CSS, SASS, LESS
+		- HTML
+		* RIA, AJAX, Mobile First, Responsive Design, HTML5,
+		APIs (SO*)
+
+- Biblioteca y frameworks
+		- jQuery
+		- Knockout
+		- Ember
+		- Angular*
+		- React*
+		- Vuejs*
+		- Bootstrap (CSS)
+
+- Server Side (HTTP)
+		* Static
+		- Java
+		- ASP.NET Core MVC
+		- Nodejs* (V8), Next.js, Nuxt
+		- Razor, C#
+
+
+https://webassembly.org/
+https://madewithwebassembly.com/
+
+- Blazor
+	* Sintaxis Razor, C#
+		- Template engine
+		- Components
+	- Presentar los diferentes Hosting Models
+		- Blazor WebAssembly*** (WASM)
+		- Blazor Server (ASP.NET Core)
+		- Blazor Hybrid
+			- .NET MAUI (dotnet core)
+			- WinForms
+			- WPF
