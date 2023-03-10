@@ -1,0 +1,42 @@
+﻿@page "/"
+@*@inject HttpClient client*@
+@*@layout EmptyLayout*@
+@using ba2.Components
+
+<h1>NASA Image Search Client</h1>
+
+@*<ba2.Components.ImageSearch />*@
+<ImageSearch OnSearchCallback="OnSearch" />
+
+@*<ImageList Items="SearchData?.Collection.Items"
+           OnSelectedCallback="OnSelected" />*@
+
+<div class="d-flex flex-row mb-3">
+    <div class="p-2">
+        <ImageList Items="SearchData?.Collection.Items" OnSelectedCallback="OnSelected" />
+    </div>
+    <div class="p-2">
+        @if (CurrentImage != null)
+        {
+            <img width="200" src="@CurrentImage.Href" alt="@CurrentImage.Description"
+                 title="@CurrentImage.Description" />
+        }
+    </div>
+</div>
+
+@code {
+    public ImagesCollection? SearchData { get; set; }
+    public ImageDetail? CurrentImage { get; set; }
+
+    void OnSearch(ImagesCollection data)
+    {
+        Console.WriteLine($"Results: {data?.Collection?.Items.Count ?? 0}");
+
+        SearchData = data ?? new ImagesCollection();
+    }
+
+    void OnSelected(ImageDetail img)
+    {
+        CurrentImage = img;
+    }
+}

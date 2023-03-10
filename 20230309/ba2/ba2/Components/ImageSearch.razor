@@ -1,0 +1,37 @@
+﻿@using ba2.Models;
+@inject HttpClient Http
+
+<form @onsubmit="fMain_OnSubmit" disabled="@processing">
+    <div class="mb-3">
+        <label for="iFilter" class="form-label">Image search @(processing ? " processing ... " : "")</label>
+        <input type="search" class="form-control" id="iFilter" placeholder="Type text here ..." @bind="filter">
+    </div>
+    <div class="col-auto">
+        <button type="submit" class="btn btn-primary">Search</button>
+    </div>
+</form>
+
+@code {
+    [Parameter]
+    public EventCallback<ImagesCollection> OnSearchCallback { get; set; }
+
+    public string filter { get; set; } = "";
+
+    bool processing = false;
+
+    async void fMain_OnSubmit()
+    {
+        if (!string.IsNullOrEmpty(filter))
+        {
+            Console.WriteLine($"Searching for {filter} ...");
+
+            processing = true;
+            ImagesCollection data = await Http.GetFromJsonAsync<ImagesCollection>(
+                $"search?q={filter}&description={filter}&media_type=image") ?? 
+                new ImagesCollection();
+            processing = false;
+
+            await OnSearchCallback.InvokeAsync(data);
+        }
+    }
+}
