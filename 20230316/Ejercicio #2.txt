@@ -1,0 +1,48 @@
+Blazor
+Ejercicio #2
+
+Objectivo: Construir una aplicación de Blazor, desde donde se consuma un servicio web externo, 
+específicamente el disponible en https://swapi.dev/, donde se consultan datos sobre 
+las películas de Star Wars.
+
+1. Crear una nueva aplicación de Blazor utilizando a la plantilla por defecto, en donde se hacer
+hostin de la aplicación por medio de una aplicación de ASP.NET Core. 
+El nombre que se le debe dar a la aplicación es swquery. Valor 2 puntos.
+
+2. Crear un Razor Class Library que debe contener cualquier componente de Blazor que sea 
+necesario crear dentro de la aplicación. Valor 2 puntos.
+
+3. Modificar la aplicación para que lo primero que sea posible hacer desde la aplicación
+sea consultar los personajes de Star Wars llamando a la porción del servicio mencionado
+que corresponda. Valor 6 puntos.
+
+	3.1 Se debe crear al menos un componente que sea accesible desde la ruta "/starwars". Valor 2 puntos.
+	
+	3.2 Se debe agregar al menú principal de la aplicación de Blazor el enlace correspondiente
+	para poder llegar hasta el nuevo componente en la ruta "/starwars".	 Valor 1 punto.
+	
+	3.3 Se debe hacer uso de concepto de Servicios y Modelos de datos, creando un nuevo Class Library para 
+	contener la definición de servicios y modelos, estos dos conceptos deben permanecer en Class Library 
+	diferentes. Valor 2 puntos.
+	
+	3.4 Se debe ofrecer una espacio para que el usuario digite el filtro por el cual desea buscar. Valor 1 punto.
+	
+		Por ejemplo para buscar personajes que tengan en su nombre "lu" se puede enviar
+		una solicitud GET a la dirección: https://swapi.dev/api/people/?search=lu
+
+		Los datos de los personajes resultantes se deben presentar en una lista, usar
+		una lista de Bootstrap para presentar los resultados. Mostrar los datos de:
+		name, height y birth_year.
+		https://getbootstrap.com/docs/5.2/components/list-group/
+
+		----------------------------------------
+		
+		Filtro: [ lu ]
+		
+		Resultados
+		
+		Luke Skywalker, 19BBY, 170
+		
+		----------------------------------------
+
+-- ÚLTIMA LÍNEA --

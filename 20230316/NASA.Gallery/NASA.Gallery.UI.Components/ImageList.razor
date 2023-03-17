@@ -11,12 +11,12 @@ else
         <ul class="list-group list-group-flush">
             @foreach (var item in Items)
             {
-                <li class="list-group-item list-group-item-action" 
-                @onclick="@(e => Item_OnClick(item))">
+                <a class="list-group-item list-group-item-action"
+                   href="/image/@(new Random().Next(1,100))">
                     @item.Data[0].Title
                     <p>@item.Data[0].Description.Substring(1,30)</p>
                     <img width="200" src="@item.Links[0].Href" alt="@item.Data[0].Title" />
-                </li>
+                </a>
             }
         </ul>
         @Items.Count
