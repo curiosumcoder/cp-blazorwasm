@@ -1,0 +1,42 @@
+﻿<h5>Image List</h5>
+
+@if (Items == null)
+{
+    <p class="alert">No data!</p>
+}
+else
+{
+    if (Items.Count > 0)
+    {
+        <ul class="list-group list-group-flush">
+            @foreach (var item in Items)
+            {
+                <li class="list-group-item list-group-item-action" 
+                @onclick="@(e => Item_OnClick(item))">
+                    @item.Data[0].Title
+                    <p>@item.Data[0].Description.Substring(1,30)</p>
+                    <img width="200" src="@item.Links[0].Href" alt="@item.Data[0].Title" />
+                </li>
+            }
+        </ul>
+        @Items.Count
+    }
+}
+
+@code {
+    [Parameter]
+    public List<ImageItem>? Items { get; set; }
+
+    [Parameter]
+    public EventCallback<ImageDetail> OnSelectedCallback { get; set; }
+
+    async void Item_OnClick(ImageItem item)
+    {
+        if (item != null)
+        {
+            var id = new ImageDetail(item.Data[0], item.Links[0]);
+
+            await OnSelectedCallback.InvokeAsync(id);
+        }
+    }
+}

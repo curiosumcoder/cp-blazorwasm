@@ -1,0 +1,45 @@
+﻿@using NASA.Gallery.Services
+@inject IImageService imgs
+
+<form @onsubmit="fMain_OnSubmit" disabled="@processing">
+    <div class="mb-3">
+        <label for="iFilter" class="form-label">Image search @(processing ? " processing ... " : "")</label>
+        <input type="search" class="form-control" id="iFilter" placeholder="Type text here ..." @bind="filter">
+    </div>
+    <div class="col-auto">
+        <button type="submit" class="btn btn-primary">Search</button>
+    </div>
+</form>
+
+<ImageList Items="Items" />
+
+@code {
+    public string filter { get; set; } = "";
+
+    bool processing = false;
+
+    List<ImageItem> Items { get; set; } = new List<ImageItem>();
+
+    async void fMain_OnSubmit()
+    {
+        if (!string.IsNullOrEmpty(filter))
+        {
+            Console.WriteLine($"Searching for {filter} ...");
+
+            processing = true;
+
+            //ImagesCollection data = await Http.GetFromJsonAsync<ImagesCollection>(
+            //    $"search?q={filter}&description={filter}&media_type=image") ?? 
+            //    new ImagesCollection();
+
+            var data = await imgs.Search(filter);
+            Items = data?.Collection.Items ?? new List<ImageItem>();
+
+            processing = false;
+
+            StateHasChanged();
+
+            //await OnSearchCallback.InvokeAsync(data);
+        }
+    }
+}
