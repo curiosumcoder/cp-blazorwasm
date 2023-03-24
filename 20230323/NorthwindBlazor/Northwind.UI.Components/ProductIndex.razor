@@ -1,0 +1,54 @@
+﻿@page "/product"
+@inject IProductService ps
+
+<h3>Product - Index</h3>
+
+<a href="/product/create" class="btn btn-primary">Create</a>
+
+<form @onsubmit="onSearch">
+    <div class="form-group">
+        <label>Search</label>
+        <input class="form-control" @bind="filter" />
+    </div>
+    <button class="btn btn-primary">Search</button>
+</form>
+
+<hr />
+
+@if (products == null)
+{
+    <p><em>Searching... @filter</em></p>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var p in products)
+            {
+                <tr>
+                    <td>@p.ProductName</td>
+                    <td>@p.UnitPrice</td>
+                    <td><a href="/product/details/@p.ProductId" class="btn btn-light">></a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    string filter = "";
+    private List<Product> products = new List<Product>();
+
+    public async Task onSearch()
+    {
+        products.Clear();
+        products = await ps.Search(filter);
+    }
+}

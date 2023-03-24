@@ -1,0 +1,36 @@
+﻿@page "/product/create"
+@using Microsoft.AspNetCore.Components.Forms
+@inject IProductService ps
+@inject Utility util
+
+<h3>Product - Create</h3>
+
+<EditForm Model="p" OnValidSubmit="onSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label>Name</label>
+        <ValidationMessage For="@(() => p.ProductName)" />
+        <InputText class="form-control" @bind-Value="p.ProductName" />
+    </div>
+    <div class="form-group">
+        <label>Price</label>
+        <ValidationMessage For="@(() => p.UnitPrice)" />
+        <InputNumber class="form-control" @bind-Value="p.UnitPrice" />
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+</EditForm>
+
+@code {
+    private Product p = new Product();
+
+    public async Task onSubmit()
+    {
+        await ps.Create(p);
+
+        await util.Alert("Ready!");
+    }
+}

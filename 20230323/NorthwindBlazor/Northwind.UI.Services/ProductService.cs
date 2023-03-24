@@ -13,16 +13,21 @@ namespace Northwind.UI.Services
             _httpClient = httpClient;
         }
 
+        public async Task<Product> Get(int id)
+        {
+            return await _httpClient.GetFromJsonAsync<Product>($"product/{id}") ?? new Product();
+        }
+
         public async Task<List<Product>> Search(string filter)
         {
-            return await _httpClient.GetFromJsonAsync<List<Product>>($"Search/{filter}") ?? new List<Product>();
+            return await _httpClient.GetFromJsonAsync<List<Product>>($"product/Search/{filter}") ?? new List<Product>();
         }
 
         public async Task<Product> Create(Product p)
         {
             Product result;
 
-            using (var response = await _httpClient.PostAsJsonAsync<Product>("", p))
+            using (var response = await _httpClient.PostAsJsonAsync<Product>("product", p))
             {
                 string apiResponse = await response.Content.ReadAsStringAsync();
                 result = JsonSerializer.Deserialize<Product>(apiResponse);
@@ -33,7 +38,7 @@ namespace Northwind.UI.Services
 
         public async Task Update(Product p)
         {
-            using (var response = await _httpClient.PutAsJsonAsync<Product>($"{p.ProductId}", p))
+            using (var response = await _httpClient.PutAsJsonAsync<Product>($"product/{p.ProductId}", p))
             {
                 string apiResponse = await response.Content.ReadAsStringAsync();
             }
@@ -41,7 +46,7 @@ namespace Northwind.UI.Services
 
         public async Task Delete(int id)
         {
-            await _httpClient.DeleteAsync($"{id}");
+            await _httpClient.DeleteAsync($"product/{id}");
         }
     }
 }

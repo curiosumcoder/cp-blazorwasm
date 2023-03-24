@@ -1,9 +1,16 @@
 using Microsoft.AspNetCore.ResponseCompression;
+using Microsoft.EntityFrameworkCore;
+using Northwind.Store.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
+var connectionString = builder.Configuration.GetConnectionString("NW");
+if (!string.IsNullOrEmpty(connectionString))
+{
+    builder.Services.AddDbContext<NWContext>(options =>
+        options.UseSqlServer(connectionString));
+}
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 

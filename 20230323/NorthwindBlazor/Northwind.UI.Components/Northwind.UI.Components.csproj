@@ -15,4 +15,9 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="7.0.4" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Northwind.UI.Models\Northwind.UI.Models.csproj" />
+    <ProjectReference Include="..\Northwind.UI.Services\Northwind.UI.Services.csproj" />
+  </ItemGroup>
+
 </Project>

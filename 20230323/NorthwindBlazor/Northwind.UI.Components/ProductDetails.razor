@@ -1,0 +1,21 @@
+﻿@page "/product/details/{id}"
+@inject IProductService ps
+
+<h3>Product - Details @Id</h3>
+
+<p>@p.ProductName</p>
+
+@code {
+    private Product p = new Product();
+
+    [Parameter]
+    public string? Id { get; set; }
+
+    protected async override Task OnInitializedAsync()
+    {
+        if (Id != null)
+        {
+            p = await ps.Get(Convert.ToInt32(Id));
+        }
+    }
+}
