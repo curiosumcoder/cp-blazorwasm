@@ -1,4 +1,4 @@
-﻿@page "/product/details/{id}"
+﻿@page "/product/details/{id:int}"
 @inject IProductService ps
 
 <h3>Product - Edit @Id</h3>
@@ -9,13 +9,10 @@
     private Product p = new Product();
 
     [Parameter]
-    public string? Id { get; set; }
+    public int Id { get; set; }
 
     protected async override Task OnInitializedAsync()
     {
-        if (Id != null)
-        {
-            p = await ps.Get(Convert.ToInt32(Id));
-        }
+        p = await ps.Get(Id);
     }
 }
