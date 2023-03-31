@@ -41,7 +41,8 @@ else
                     <td>@p.ProductName</td>
                     <td>@p.UnitPrice</td>
                     <td><button @onclick="@(async () => { if (await util.Confirm()) { await onDelete(p.ProductId); } })" class="btn btn-warning">X</button></td>
-                    <td><a href="/product/details/@p.ProductId" class="btn btn-primary">></a></td>
+                    <td><a href="/product/edit/@p.ProductId" class="btn btn-primary">Edit</a></td>
+                    <td><a href="/product/details/@p.ProductId" class="btn btn-primary">Details</a></td>
                 </tr>
             </Virtualize>
 
