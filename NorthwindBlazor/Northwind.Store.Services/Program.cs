@@ -1,19 +1,10 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Net.Http.Headers;
 using Northwind.Store.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
-builder.Services.AddCors(options =>
-{
-    options.AddDefaultPolicy(builder =>
-    {
-        builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
-        // Para un origen específico
-        //builder.WithOrigins("https://localhost:7205/").WithMethods("GET");
-    });
-});
 
 var connectionString = builder.Configuration.GetConnectionString("NW");
 if (!string.IsNullOrEmpty(connectionString))
@@ -27,6 +18,11 @@ builder.Services.AddControllers();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+app.UseCors(policy =>
+    policy.WithOrigins("https://localhost:7172")
+    .AllowAnyMethod()
+    .AllowAnyHeader()
+    .AllowCredentials());
 
 app.UseHttpsRedirection();
 

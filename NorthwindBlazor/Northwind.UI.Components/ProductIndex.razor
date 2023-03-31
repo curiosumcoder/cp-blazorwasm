@@ -1,5 +1,8 @@
 ﻿@page "/product"
 @inject IProductService ps
+@inject Utility util
+@inject StateContainer state
+@using Microsoft.AspNetCore.Components.Web.Virtualization
 
 <h3>Product - Index</h3>
 
@@ -21,23 +24,36 @@
 }
 else
 {
+    <p>Items count: @products.Count</p>
     <table class="table table-striped">
         <thead>
             <tr>
                 <th>Name</th>
                 <th>Price</th>
                 <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var p in products)
+
+            <Virtualize Items="@products" Context="p">
+                <tr>
+                    <td>@p.ProductName</td>
+                    <td>@p.UnitPrice</td>
+                    <td><button @onclick="@(async () => { if (await util.Confirm()) { await onDelete(p.ProductId); } })" class="btn btn-warning">X</button></td>
+                    <td><a href="/product/details/@p.ProductId" class="btn btn-primary">></a></td>
+                </tr>
+            </Virtualize>
+
+@*            @foreach (var p in products)
             {
                 <tr>
                     <td>@p.ProductName</td>
                     <td>@p.UnitPrice</td>
-                    <td><a href="/product/details/@p.ProductId" class="btn btn-light">></a></td>
+                    <td><button @onclick="@(async () => { if (await util.Confirm()) { await onDelete(p.ProductId); } })" class="btn btn-warning">X</button></td>
+                    <td><a href="/product/details/@p.ProductId" class="btn btn-primary">></a></td>
                 </tr>
-            }
+            }*@
         </tbody>
     </table>
 }
@@ -46,9 +62,34 @@ else
     string filter = "";
     private List<Product> products = new List<Product>();
 
+    protected async override Task OnInitializedAsync()
+    {
+        filter = state.Filter;
+
+        if (!string.IsNullOrEmpty(filter))
+        {
+            products = await ps.Search(filter);
+        }
+
+        //return base.OnInitializedAsync();
+    }
+
     public async Task onSearch()
     {
+        state.Filter = filter;
         products.Clear();
         products = await ps.Search(filter);
+    }
+
+    public async Task onDelete(int id)
+    {
+        await ps.Delete(id);
+
+        await util.Alert("Ready!");
+
+        // Estrategía para refrescar lista
+        //products = await ps.Search(filter);
+
+        products.Remove(products.Single(p => p.ProductId == id));
     }
 }
